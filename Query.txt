@@ -1,0 +1,17 @@
+SELECT 
+  `bi-muamalat-2022.Final_Task.Orders`.Date as order_date,
+  `bi-muamalat-2022.Final_Task.ProductCategory`.CategoryName as category_name,
+  `bi-muamalat-2022.Final_Task.Customers`.CustomerCity as cust_city,
+  `bi-muamalat-2022.Final_Task.Customers`.CustomerEmail as cust_email,
+  `bi-muamalat-2022.Final_Task.Orders`.Quantity as order_qty,
+  `bi-muamalat-2022.Final_Task.Products`.ProdName as product_name,
+  `bi-muamalat-2022.Final_Task.Products`.Price as product_price,
+  (`bi-muamalat-2022.Final_Task.Orders`.Quantity * `bi-muamalat-2022.Final_Task.Products`.Price) as total_sales
+FROM `bi-muamalat-2022.Final_Task.Customers`
+INNER JOIN 
+  `bi-muamalat-2022.Final_Task.Orders` ON `bi-muamalat-2022.Final_Task.Customers`.CustomerID = `bi-muamalat-2022.Final_Task.Orders`.CustomerID
+INNER JOIN 
+  `bi-muamalat-2022.Final_Task.Products`ON `bi-muamalat-2022.Final_Task.Orders`.ProdNumber = `bi-muamalat-2022.Final_Task.Products`.ProdNumber
+INNER JOIN 
+  `bi-muamalat-2022.Final_Task.ProductCategory` ON `bi-muamalat-2022.Final_Task.Products`.Category =`bi-muamalat-2022.Final_Task.ProductCategory`.CategoryID
+ORDER BY order_date;
